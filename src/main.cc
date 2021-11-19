@@ -1,5 +1,4 @@
 #include <fstream>
-#include <iostream>
 #include "../include/valoraciones.h"
 
 void Ayuda(){
@@ -12,7 +11,8 @@ Valoraciones Argumentos(int argc, char** argv){
     Valoraciones V;
     if (argc == 4){
         if (argv[1] == "-i"){
-            std::ifstream fentrada(argv[2]);
+            std::ifstream fentrada;
+            fentrada.open(argv[2], std::ios::in);
             if (!fentrada.is_open())
                 std::cout << "No se pudo abrir el fichero\n";
             
