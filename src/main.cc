@@ -14,6 +14,35 @@ void Ayuda(){
     std::cout << "estval -i input.txt -o output.txt\n\n";
 }
 
+void menu(Valoraciones &v){
+    int opcion = 0, opcion2 = 0;
+
+    do {
+        std::cout << "Seleccione una métrica:\n";
+        std::cout << "1. Correlación de Pearson\n";
+        std::cout << "2. Distancia Coseno\n";
+        std::cout << "3. Distancia Euclídea\n";
+        std::cin >> opcion;
+
+        std::cout << "Seleccione el tipo de predicción:\n";
+        std::cout << "1. Simple\n";
+        std::cout << "2. Diferencia con la media\n";
+        std::cin >> opcion2;
+
+        switch (opcion2) {
+            case 1:
+                v.Pred_simple(opcion);
+                break;
+            case 2:
+                v.Pred_media(opcion);
+                break;
+            default:
+                std::cout << "Por favor introduzca un numero de los indicados en el menu \n";
+                break;
+        }
+    } while (opcion > 3 || opcion < 1);
+}
+
 int main (int argc, char *argv[]) {
     int n_items, n_person, val;
 
@@ -34,34 +63,8 @@ int main (int argc, char *argv[]) {
                     V.set_persona_item_valor(i,j,val);
                 }
             }
-            std::cout << "Relacion: " << V.Pearson(2,0).first << " considerando " << V.Pearson(2,0).second << " items." << std::endl;
-            std::cout << "Relacion: " << V.Coseno(2,0).first << " considerando " << V.Coseno(2,0).second << " items." << std::endl;
+            menu(V);
         }
     } else
         Ayuda();
-    // Menu
-    /*int opcion = 0;
-
-    do {
-        std::cout << "----------------------Menu----------------------\n";
-        std::cout << "1. Generar entorno a partir de fichero\n";
-        std::cout << "2. Generar entorno con obstaculos aleatorios\n";
-        std::cout << "3. Generar entorno de forma manual\n";
-        std::cin >> opcion;
-
-        switch (opcion) {
-            case 1:
-                text_fich();
-                break;
-            case 2:
-                text(false);
-                break;
-            case 3:
-                text(true);
-                break;
-            default:
-                std::cout << "Por favor introduzca un numero de los indicados en el menu \n";
-                break;
-        }
-    } while (opcion > 3 || opcion < 1);*/
 }
