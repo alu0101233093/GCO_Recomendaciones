@@ -17,7 +17,7 @@ void Ayuda(){
 int main (int argc, char *argv[]) {
     int n_items, n_person, val;
 
-    if (argc == 4){
+    if (argc == 5){
         std::ifstream fentrada;
         fentrada.open(argv[2], std::ios::in);
         if (!fentrada.is_open())
@@ -33,6 +33,7 @@ int main (int argc, char *argv[]) {
                     V.set_persona_item_valor(i,j,val);
                 }
             }
+            V.imprimir_matriz();
         }
     } else
         Ayuda();

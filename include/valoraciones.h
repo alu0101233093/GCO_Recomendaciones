@@ -14,5 +14,5 @@ class Valoraciones {
         Valoraciones(int, int);
         ~Valoraciones();
         void set_persona_item_valor(int, int, int);
-        void set_n(int);
+        void imprimir_matriz();
 };

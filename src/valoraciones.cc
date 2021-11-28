@@ -16,23 +16,29 @@ Valoraciones::Valoraciones() {
 }
 
 Valoraciones::Valoraciones(int p, int n) {
-    p_ = 0;
-    n_ = 0;
+    p_ = p;
+    n_ = n;
     CI_.resize(p_);
     for (int i = 0; i < p_; i++)
         CI_[i].resize(n_);
 }
 
 Valoraciones::~Valoraciones() {
-    std::cout << "vv";
 }
 
 void 
 Valoraciones::set_persona_item_valor(int person, int item, int val) {
-    std::cout << "kk";
+    CI_[person][item] = val;
 }
 
-void 
-Valoraciones::set_n(int i) {
-    n_ = i;
+void
+Valoraciones::imprimir_matriz() {
+    std::cout << "\n\n";
+    for(int i = 0; i < p_; i++){
+        for (int j = 0; j < n_; j++){
+            std::cout << CI_[i][j] << " ";
+        }
+        std::cout << "\n";
+    }
+    std::cout << "\n\n";
 }
