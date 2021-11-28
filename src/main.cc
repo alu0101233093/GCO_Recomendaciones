@@ -15,20 +15,24 @@ void Ayuda(){
 }
 
 int main (int argc, char *argv[]) {
-    Valoraciones V();
-    std::string arg1 = argv[1];
-    if (argc == 4 || argc == 2){
-        if (arg1 == "-i"){
-            std::ifstream fentrada;
-            fentrada.open(argv[2], std::ios::in);
-            if (!fentrada.is_open())
-                std::cout << "No se pudo abrir el fichero\n";
-            else
-                std::cout << "Fichero abierto correctamente\n\n";
-        } else {
-            std::ifstream fentrada;
-            fentrada.open(argv[1], std::ios::in);
+    int n_items, n_person, val;
 
+    if (argc == 4){
+        std::ifstream fentrada;
+        fentrada.open(argv[2], std::ios::in);
+        if (!fentrada.is_open())
+            std::cout << "No se pudo abrir el fichero\n";
+        else{
+            std::cout << "Fichero abierto correctamente\n\n";
+            fentrada >> n_person;
+            fentrada >> n_items;
+            Valoraciones V(n_person, n_items);
+            for (int i = 0; i < n_person; i++){
+                for (int j = 0; j < n_items; j++){
+                    fentrada >> val;
+                    V.set_persona_item_valor(i,j,val);
+                }
+            }
         }
     } else
         Ayuda();

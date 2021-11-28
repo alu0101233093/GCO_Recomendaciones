@@ -1,29 +1,49 @@
-CXXFLAGS= g++ -std=c++14 -g -Wall
+########################################################################
+####################### Makefile Template ##############################
+########################################################################
 
-text0 = 
-text1 = Se procederá a compilar la práctica...
-text2 = Modo de empleo:
-text3 = ./estval
-text4 = Se ha eliminado el fichero ejecutable.
-text5 = Se ha eliminado el fichero de salida.
+# Compiler settings - Can be customized.
+CC = g++
+CXXFLAGS = -std=c++11 -Wall
+LDFLAGS = 
 
-F1 = main.cc
+# Makefile settings - Can be customized.
+APPNAME = estval
+EXT = .cc
+SRCDIR = src
+OBJDIR = build
 
-ODIR = src/
+############## Do not change anything from here downwards! #############
+SRC = $(wildcard $(SRCDIR)/*$(EXT))
+OBJ = $(SRC:$(SRCDIR)/%$(EXT)=$(OBJDIR)/%.o)
+DEP = $(OBJ:$(OBJDIR)/%.o)
+# UNIX-based OS variables & settings
+RM = rm
+DELOBJ = $(OBJ)
 
-PROGRAM = estval
+########################################################################
+####################### Targets beginning here #########################
+########################################################################
 
-all: GCO
+all: $(APPNAME)
 
-Inicio:
-	@echo $(text1)
+# Builds the app
+$(APPNAME): $(OBJ)
+	$(CC) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
 
-GCO: Inicio
-	$(CXXFLAGS) $(ODIR)$(F1) -o $(PROGRAM)
-	@echo $(text0)
-	@echo $(text2) $(text3)$(PROGRAM)
+# Creates the dependecy rules
+%.d: $(SRCDIR)/%$(EXT)
+	@$(CPP) $(CFLAGS) $< -MM -MT $(@:$(OBJDIR)/%.d=$(OBJDIR)/%.o) >$@
 
+# Includes all .h files
+-include $(DEP)
+
+# Building rule for .o files and its .c/.cpp in combination with all .h
+$(OBJDIR)/%.o: $(SRCDIR)/%$(EXT)
+	$(CC) $(CXXFLAGS) -o $@ -c $<
+
+################### Cleaning rules for Unix-based OS ###################
+# Cleans complete project
+.PHONY: clean
 clean:
-	rm -rf $(PROGRAM)
-	@echo $(text0)
-	@echo $(text4)
+	$(RM) $(DELOBJ) $(APPNAME)
