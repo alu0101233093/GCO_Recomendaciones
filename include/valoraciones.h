@@ -6,8 +6,9 @@ typedef std::vector<std::vector<int>> Matriz;
 
 class Valoraciones {
     private:
-        Matriz CI;
+        Matriz CI_; // calificaciones - ítems
     public:
-        void set_person(std::string, int);
-
-}
+        Valoraciones();
+        ~Valoraciones();
+        void set_person(std::vector<int>);
+};
