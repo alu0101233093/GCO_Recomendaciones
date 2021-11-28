@@ -17,6 +17,7 @@ void Ayuda(){
 int main (int argc, char *argv[]) {
     int n_items, n_person, val;
 
+    // Lectura y carga de datos
     if (argc == 5){
         std::ifstream fentrada;
         fentrada.open(argv[2], std::ios::in);
@@ -33,8 +34,33 @@ int main (int argc, char *argv[]) {
                     V.set_persona_item_valor(i,j,val);
                 }
             }
-            V.imprimir_matriz();
+            std::cout << "Relacion: " << V.Pearson(2,0) << std::endl;
         }
     } else
         Ayuda();
+    // Menu
+    /*int opcion = 0;
+
+    do {
+        std::cout << "----------------------Menu----------------------\n";
+        std::cout << "1. Generar entorno a partir de fichero\n";
+        std::cout << "2. Generar entorno con obstaculos aleatorios\n";
+        std::cout << "3. Generar entorno de forma manual\n";
+        std::cin >> opcion;
+
+        switch (opcion) {
+            case 1:
+                text_fich();
+                break;
+            case 2:
+                text(false);
+                break;
+            case 3:
+                text(true);
+                break;
+            default:
+                std::cout << "Por favor introduzca un numero de los indicados en el menu \n";
+                break;
+        }
+    } while (opcion > 3 || opcion < 1);*/
 }
