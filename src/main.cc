@@ -34,7 +34,8 @@ int main (int argc, char *argv[]) {
                     V.set_persona_item_valor(i,j,val);
                 }
             }
-            std::cout << "Relacion: " << V.Pearson(2,0) << std::endl;
+            std::cout << "Relacion: " << V.Pearson(2,0).first << " considerando " << V.Pearson(2,0).second << " items." << std::endl;
+            std::cout << "Relacion: " << V.Coseno(2,0).first << " considerando " << V.Coseno(2,0).second << " items." << std::endl;
         }
     } else
         Ayuda();

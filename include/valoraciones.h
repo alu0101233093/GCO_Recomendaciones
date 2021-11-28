@@ -18,5 +18,6 @@ class Valoraciones {
         ~Valoraciones();
         void set_persona_item_valor(int, int, int);
         void imprimir_matriz();
-        float Pearson(int,int);
+        std::pair<float,int> Pearson(int,int);
+        std::pair<float,int> Coseno(int,int);
 };
