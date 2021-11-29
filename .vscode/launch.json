@@ -12,7 +12,7 @@
             "program": "${workspaceFolder}/estval",
             "args": [
                 "-i",
-                "input.txt",
+                "utility-matrix-10-25-1.txt",
                 "-o",
                 "output.txt"
               ],

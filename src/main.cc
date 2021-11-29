@@ -14,8 +14,9 @@ void Ayuda(){
     std::cout << "estval -i input.txt -o output.txt\n\n";
 }
 
-void menu(Valoraciones &v){
-    int opcion = 0, opcion2 = 0;
+void menu(Valoraciones *v){
+    int opcion = 1;
+    int opcion2 = 1;
 
     do {
         std::cout << "Seleccione una métrica:\n";
@@ -31,10 +32,11 @@ void menu(Valoraciones &v){
 
         switch (opcion2) {
             case 1:
-                v.Pred_simple(opcion);
+                v->Pred_simple(opcion);
+                v->imprimir_matrizf();
                 break;
             case 2:
-                v.Pred_media(opcion);
+                v->Pred_media(opcion);
                 break;
             default:
                 std::cout << "Por favor introduzca un numero de los indicados en el menu \n";
@@ -63,7 +65,7 @@ int main (int argc, char *argv[]) {
                     V.set_persona_item_valor(i,j,val);
                 }
             }
-            menu(V);
+            menu(&V);
         }
     } else
         Ayuda();

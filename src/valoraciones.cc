@@ -42,7 +42,10 @@ Valoraciones::Valoraciones(int p, int n) {
     }
 }
 
-Valoraciones::~Valoraciones() {}
+Valoraciones::~Valoraciones() {
+    CI_.clear();
+    CIF_.clear();
+}
 
 void 
 Valoraciones::set_persona_item_valor(int person, int item, int val) {
@@ -147,7 +150,43 @@ Valoraciones::Euclidea(int u, int v) {
 void
 Valoraciones::Pred_simple(int distancia) {
     float num = 0, den = 0;
-    
+
+    for(int p = 0; p < p_; p++){
+        for (int i = 0; i < n_; i++){
+            if(CI_[p][i] == -1){
+                // formula
+                for(int q = 0; q < p_; q++){
+                    if(p != q && CI_[q][i] != -1){
+                        switch (distancia) {
+                        case 1:
+                            num += Pearson(p,q).first*CI_[q][i];
+                            den += abs(Pearson(p,q).first);
+                            break;
+                        
+                        case 2:
+                            num += Coseno(p,q).first*CI_[q][i];
+                            den += abs(Coseno(p,q).first);
+                            break;
+                        
+                        case 3:
+                            num += Euclidea(p,q).first*CI_[q][i];
+                            den += abs(Euclidea(p,q).first);
+                            break;
+                        }
+                    }
+                }
+                // fin de la formula
+                CIF_[p][i] = num/den;
+            }
+        }
+    }
+    imprimir_matrizf();
+}
+
+void
+Valoraciones::Pred_media(int distancia) {
+    float num = 0,den = 0;
+
     for(int p = 0; p < p_; p++){
         for (int i = 0; i < n_; i++){
             if(CI_[p][i] == -1){
@@ -163,15 +202,7 @@ Valoraciones::Pred_simple(int distancia) {
             }
         }
     }
-
-    imprimir_matrizf();
     
-}
-
-void
-Valoraciones::Pred_media(int distancia) {
-    
-    // wip
     
 }
 
